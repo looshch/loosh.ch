@@ -1,0 +1,144 @@
+@font-face {
+  font-family: IBM Plex Serif;
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/ibmplexserif/v19/jizDREVNn1dOx-zrZ2X3pZvkTiUf2zcZiVbJ.woff2)
+    format('woff2');
+}
+
+@font-face {
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: 500 700;
+  src: url(https://fonts.gstatic.com/s/ibmplexsans/v21/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYbSB4Zh.woff2)
+    format('woff2');
+}
+
+h1,
+h2,
+h3,
+h4,
+.contacts-and-skills ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  margin: 0;
+  padding-left: 1.03rem;
+}
+
+a,
+a * {
+  text-decoration: none;
+  text-wrap: nowrap;
+  line-height: 0.675rem;
+  color: #1358db;
+  display: inline-block;
+}
+
+.underline {
+  border-bottom: 1px solid #1358db;
+}
+
+.nowrap {
+  text-wrap: nowrap;
+}
+
+body {
+  font-family: IBM Plex Serif;
+  color: #282828;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.1rem;
+}
+
+main {
+  margin: 2rem 2rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+article {
+  width: 48rem;
+  display: flex;
+}
+
+hr {
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #000;
+}
+
+.contacts-and-skills {
+  flex-shrink: 2;
+}
+
+.contacts-and-skills .name {
+  font-size: 1.5rem;
+  line-height: 1.7rem;
+}
+
+.contacts-and-skills address {
+  font-style: normal;
+}
+
+.contacts-and-skills address,
+.contacts-and-skills address ul li.tel {
+  margin-top: 0.5rem;
+}
+
+.contacts-and-skills ul li {
+  display: inline-block;
+}
+
+.contacts-and-skills address ul li,
+.contacts-and-skills address ul li a {
+  width: fit-content;
+}
+
+.contacts-and-skills address ul li.email {
+  margin-bottom: 0.5rem;
+}
+
+.contacts-and-skills .skills {
+  margin-top: 0.5rem;
+}
+
+.content {
+  margin-left: 1.5rem;
+}
+
+.positions {
+  margin-top: 0.5rem;
+}
+
+.positions .position {
+  margin-bottom: 0.5rem;
+}
+
+.positions .position header :is(time, address) {
+  display: inline-block;
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+.contacts-and-skills .name,
+.positions .position header .meta,
+.positions .position header h4 {
+  font-family: IBM Plex Sans;
+}
+
+h1,
+h2,
+h3,
+.contacts-and-skills .name,
+.positions .position header .meta {
+  font-weight: 500;
+}
+
+.positions .position header h4 {
+  font-weight: 700;
+}

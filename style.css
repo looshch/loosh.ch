@@ -1,0 +1,125 @@
+:root {
+  --font-weight-nav: 200;
+  --red: #e23f3f;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+  (-o-min-device-pixel-ratio: 2/1),
+  (min-resolution: 2dppx) {
+  :root {
+    --font-weight-nav: 100;
+  }
+}
+
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/montserrat/v30/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Xw5aXp-p7K4KLg.woff2)
+    format('woff2');
+}
+
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/montserrat/v30/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvr6Hw5aXp-p7K4KLg.woff2)
+    format('woff2');
+}
+
+body {
+  color: #fff;
+  background: #282828;
+  font-weight: var(--font-weight-nav);
+}
+
+header .logo {
+  margin: 0 auto;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+  font-size: 5rem;
+}
+
+header .logo .lollipop {
+  width: 2.7rem;
+  height: 2.7rem;
+  margin-top: 1.2rem;
+  -webkit-animation: rotation 8s cubic-bezier(0.8, 0.2, 0.2, 0.8) infinite;
+  animation: rotation 8s cubic-bezier(0.8, 0.2, 0.2, 0.8) infinite;
+}
+
+@-webkit-keyframes rotation {
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotation {
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion) {
+  header .logo .lollipop {
+    -webkit-animation: none;
+    animation: none;
+  }
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  gap: 1rem;
+  list-style: none;
+  font-family: Montserrat;
+  font-size: 2rem;
+}
+
+header,
+nav {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a,
+nav ul li,
+.logo {
+  cursor: pointer;
+}
+
+a,
+nav ul li {
+  -webkit-transition: color 0.15s;
+  -o-transition: color 0.15s;
+  transition: color 0.15s;
+}
+
+nav ul li:hover,
+a:hover {
+  color: var(--red);
+}
