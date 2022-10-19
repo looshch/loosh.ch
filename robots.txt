@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Disallow: /.git/
+Disallow: /.gitignore
+Disallow: /404.html
+Disallow: /cv.*
+Allow: /assets/george_looshch_cv.pdf
+Allow: /assets/favicon*
+Allow: /assets/apple-touch-icon.png
+Allow: /assets/lollipop.svg
+Allow: /assets/man.gif
+Allow: /assets/v.gif
+Allow: /assets/chwd.gif
+Allow: /assets/diff.gif
+Disallow: /assets/
