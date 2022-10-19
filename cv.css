@@ -1,0 +1,147 @@
+@font-face {
+  font-family: IBM Plex Serif;
+  font-style: normal;
+  font-weight: 300;
+  src: url(https://fonts.gstatic.com/s/ibmplexserif/v19/jizAREVNn1dOx-zrZ2X3pZvkTi20-SI0q1vjitOh.woff2)
+    format(woff2);
+}
+
+@font-face {
+  font-family: IBM Plex Serif;
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/ibmplexserif/v19/jizDREVNn1dOx-zrZ2X3pZvkTiUf2zcZiVbJ.woff2)
+    format(woff2);
+}
+
+@font-face {
+  font-family: IBM Plex Serif;
+  font-style: normal;
+  font-weight: 500;
+  src: url(https://fonts.gstatic.com/s/ibmplexserif/v19/jizAREVNn1dOx-zrZ2X3pZvkTi3s-CI0q1vjitOh.woff2)
+    format(woff2);
+}
+
+@font-face {
+  font-family: IBM Plex Serif;
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/ibmplexserif/v19/jizAREVNn1dOx-zrZ2X3pZvkTi2k_iI0q1vjitOh.woff2)
+    format(woff2);
+}
+
+h1,
+h2,
+h3,
+h4,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul ul {
+  margin-left: 0.7rem;
+}
+
+a,
+a * {
+  text-decoration: none;
+  text-wrap: nowrap;
+  line-height: 0.9;
+  color: #1358db;
+}
+
+h1,
+h2,
+h3,
+.contacts .name,
+.positions .position header time,
+.positions .position header address {
+  font-weight: 500;
+}
+
+a,
+a *,
+.contacts address ul li,
+.positions .position header time,
+.positions .position header address {
+  display: inline-block;
+}
+
+.contacts address,
+.contacts address ul li.tel,
+.skills,
+.positions {
+  margin-top: 0.5rem;
+}
+
+.underline {
+  border-bottom: 1px solid #1358db;
+}
+
+.nowrap {
+  text-wrap: nowrap;
+}
+
+body {
+  font-family: IBM Plex Serif;
+  color: #282828;
+  position: relative;
+  font-weight: 400;
+  font-size: 0.75rem;
+}
+
+main {
+  margin: 1rem 0.5rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+article {
+  width: 48rem;
+  display: flex;
+}
+
+.contacts {
+  flex-shrink: 2;
+}
+
+.contacts .name {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}
+
+.contacts address {
+  font-style: normal;
+}
+
+.contacts address ul li,
+.contacts address ul li a {
+  width: fit-content;
+}
+
+.contacts address ul li.email {
+  margin-bottom: 0.5rem;
+}
+
+.content {
+  margin-left: 1.5rem;
+}
+
+.positions .position {
+  margin-bottom: 0.5rem;
+}
+
+.positions .position header h4 {
+  font-weight: 700;
+}
+
+.positions .position header time,
+.positions .position header address {
+  font-style: normal;
+}
+
+.positions .position .skills {
+  margin-top: 0;
+  font-weight: 300;
+}
