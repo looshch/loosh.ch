@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>Why I Made gouse</title>
+    <meta name="description" content="Why I Made gouse" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <base href="https://loosh.ch" />
+
+    <meta property="og:title" content="Why I Made gouse" />
+    <meta property="og:description" content="Why I Made gouse" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="looshch’s blog" />
+    <meta property="og:url" content="https://loosh.ch/blog/gouse" />
+    <meta
+      property="og:image"
+      content="https://raw.githubusercontent.com/vipkek/gouse-vsc/refs/heads/master/icon.png"
+    />
+    <meta property="article:published_time" content="2022-10-19T00:00:00Z" />
+    <meta property="article:author" content="George Looshch" />
+
+    <link rel="icon" sizes="any" href="/assets/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/assets/lollipop.svg" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" href="/style.css?b=b" as="style" />
+    <link rel="preload" href="/blog.css?b=b" as="style" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/favicon-32x32.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/apple-touch-icon.png"
+    />
+
+    <link rel="stylesheet" href="/style.css?b=b" />
+    <link rel="stylesheet" href="/blog.css?b=b" />
+
+    <meta name="theme-color" content="#E23F3F" />
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">
+        <a href="https://loosh.ch">
+          <img
+            class="lollipop"
+            src="/assets/lollipop.svg"
+            width="2.7rem"
+            height="2.7rem"
+            alt="a red-white 8-section lollipop, serving as a logo"
+            fetchpriority="high"
+          />
+        </a>
+      </div>
+    </header>
+
+    <nav>
+      <ul>
+        <li>
+          <a href="/assets/george_looshch_cv.pdf">CV</a>
+        </li>
+
+        <li>
+          <a href="/blog">Blog</a>
+        </li>
+      </ul>
+    </nav>
+
+    <main>
+      <article>
+        <header>
+          <h1>
+            Why I Made
+            <a href="https://github.com/vipkek/gouse">gouse</a>
+          </h1>
+
+          <time datetime="2022-10-19">October 19, 2022</time>
+        </header>
+
+        <section>
+          <h2>Motivation</h2>
+
+          <p>
+            My friend Ilya during his active study of Go noted that it’s
+            annoying to manage ‘declared but not used’ errors when you’re just
+            testing things out. He had an idea of creating a tool for toggling
+            fake usages for unused variables. He imagined an implementation
+            based on commenting them out. I was thinking about it and came to
+            conclusion that commenting variables out isn’t scalable because
+            several variables may be declared on the same line.
+          </p>
+        </section>
+
+        <section>
+          <h2>How It Works</h2>
+
+          <img
+            src="https://raw.githubusercontent.com/vipkek/gouse/refs/heads/master/demo.gif"
+            alt="a demonstration of an example how gouse works"
+          />
+
+          <p>
+            I started from what I know is idiomatic: <code>_ := variable</code>.
+            Also I know that semicolon is allowed for code in Go. I’ve checked
+            if trailing <code>;</code> are being removed by gofmt. Indeed they
+            are. So in the end I had an easy solution: append
+            <code>; _ = variable</code> to the line where
+            <code>variable</code> is.
+          </p>
+
+          <p>
+            gouse first searches for fake usages, removes them and returns. If
+            it doesn’t find them, it tries to compile a file in a temporary
+            directory and looks for ‘no required module provides package’ errors
+            in a build output and comments out lines causing them, if any. Then
+            it tries to compile it again but looks for ‘declared but not used’
+            errors and applies the solution to associated variables and
+            un-comments commented out lines.
+          </p>
+        </section>
+
+        <section>
+          <h2>The State of gouse Now</h2>
+
+          <p>
+            The first half-baked version was written in Lua in form of a Neovim
+            plugin using data from LSP. I shared it with Ilya but he seems not
+            interested in the language anymore. Anyway I wanted to share it with
+            others. To make it scalable I decided to implement the tool back end
+            in Go so it would be easy to integrate it with an editor or IDE of
+            choice. I made
+            <a
+              href="https://marketplace.visualstudio.com/items?itemName=looshch.gouse"
+            >
+              a VS Code plugin
+            </a>
+            and wrote a very simple (Neo)vim integration.
+          </p>
+
+          <p>I hardly ever use the language since though.</p>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
