@@ -1,0 +1,106 @@
+@font-face {
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 500;
+	src: url(https://fonts.gstatic.com/s/montserrat/v24/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2) format('woff2');
+	font-display: swap;
+}
+
+body {
+	font-family: 'Montserrat', sans-serif;
+	color: #FFFFFF;
+	background-color: #292929;
+	position: relative;
+}
+
+.not-found {
+	text-align: center;
+	font-size: 4rem;
+}
+
+header .logo {
+	margin: 0 auto;
+	max-width: -webkit-fit-content;
+	max-width: -moz-fit-content;
+	max-width: fit-content;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: baseline;
+	-ms-flex-align: baseline;
+	align-items: baseline;
+	font-size: 5rem;
+	color: #FFFFFF;
+}
+
+header .logo .lollipop {
+	width: 2.7rem;
+	height: 2.7rem;
+	margin-top: 1.2rem;
+	-webkit-animation: rotation 3s cubic-bezier(0.75, 0.1, 0.25, 0.9) infinite;
+	animation: rotation 3s cubic-bezier(0.75, 0.1, 0.25, 0.9) infinite;
+}
+
+@-webkit-keyframes rotation {
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes rotation {
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+
+@media (prefers-reduced-motion) {
+	header .logo .lollipop {
+		-webkit-animation-name: dissolve;
+		animation-name: dissolve;
+	}
+}
+
+nav ul {
+	margin: 0;
+	padding: 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	gap: 1rem;
+	list-style-type: none;
+	font-size: 2rem;
+	font-weight: 500;
+}
+
+header,
+nav {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+a,
+a:hover {
+	text-decoration: none;
+	color: inherit;
+}
+
+nav ul li,
+a {
+	-webkit-transition: color .15s;
+	-o-transition: color .15s;
+	transition: color .15s;
+}
+
+nav ul li:hover,
+a:hover { color: #E23F3F }
+
+nav ul li,
+a,
+.logo { cursor: pointer }
