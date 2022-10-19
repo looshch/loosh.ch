@@ -1,0 +1,118 @@
+:root {
+  --font-weight: 200;
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    --font-weight: 100;
+  }
+}
+
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: var(--font-weight);
+  src: url(https://fonts.gstatic.com/s/montserrat/v24/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2)
+    format(woff2);
+  font-display: swap;
+}
+
+body {
+  font-family: Montserrat, sans-serif;
+  color: #ffffff;
+  background-color: #282828;
+  position: relative;
+  font-weight: var(--font-weight);
+}
+
+.not-found {
+  text-align: center;
+  font-size: 4rem;
+}
+
+header .logo {
+  margin: 0 auto;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+  font-size: 5rem;
+  color: #ffffff;
+}
+
+header .logo .lollipop {
+  width: 2.7rem;
+  height: 2.7rem;
+  margin-top: 1.2rem;
+  -webkit-animation: rotation 8s cubic-bezier(0.8, 0.2, 0.2, 0.8) infinite;
+  animation: rotation 8s cubic-bezier(0.8, 0.2, 0.2, 0.8) infinite;
+}
+
+@-webkit-keyframes rotation {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotation {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion) {
+  header .logo .lollipop {
+    -webkit-animation-name: dissolve;
+    animation-name: dissolve;
+  }
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  gap: 1rem;
+  list-style-type: none;
+  font-size: 2rem;
+}
+
+header,
+nav {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+nav ul li,
+a {
+  -webkit-transition: color 0.15s;
+  -o-transition: color 0.15s;
+  transition: color 0.15s;
+}
+
+nav ul li:hover,
+a:hover {
+  color: #e23f3f;
+}
+
+nav ul li,
+a,
+.logo {
+  cursor: pointer;
+}
