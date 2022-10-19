@@ -1,0 +1,181 @@
+:root {
+  --font-weight-text: 400;
+  --font-weight-code: 400;
+  --font-weight-subheading: 500;
+  --font-weight-heading: 700;
+  --space-s: 0.25rem;
+  --space-m: 1rem;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+  (-o-min-device-pixel-ratio: 2/1),
+  (min-resolution: 2dppx) {
+  :root {
+    --font-weight-text: 300;
+    --font-weight-subheading: 400;
+    --font-weight-heading: 600;
+  }
+}
+
+@font-face {
+  font-family: IBM Plex Serif;
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/ibmplexserif/v19/jizAREVNn1dOx-zrZ2X3pZvkTi20-SI0q1vjitOh.woff2)
+    format('woff2');
+}
+
+@font-face {
+  font-family: IBM Plex Serif;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/ibmplexserif/v19/jizDREVNn1dOx-zrZ2X3pZvkTiUf2zcZiVbJ.woff2)
+    format('woff2');
+}
+
+@font-face {
+  font-family: Ubuntu Mono;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/ubuntumono/v18/KFOjCneDtsqEr0keqCMhbCc6CsTYl4BO.woff2)
+    format('woff2');
+}
+
+@font-face {
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/ibmplexsans/v22/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYbSB4Zh.woff2)
+    format('woff2');
+}
+
+main {
+  --horizontal-margin: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-inline: var(--horizontal-margin);
+  line-height: 1.5;
+}
+
+main article {
+  margin-top: 1.5rem;
+  max-width: 35rem;
+  min-width: 0;
+}
+
+main article header {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+main article time,
+main article span:has(time),
+main article section h2,
+main.posts article section li a,
+main article header h1 {
+  font-family: IBM Plex Sans;
+}
+
+main article time,
+main article span:has(time),
+main article section h2 {
+  font-weight: var(--font-weight-subheading);
+}
+
+main.posts article section li a,
+main article header h1 {
+  font-weight: var(--font-weight-heading);
+}
+
+main.posts article section li a,
+main article header h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+main article time,
+main article span:has(time) {
+  display: block;
+  font-size: 1rem;
+  text-align: right;
+}
+
+main article span > time {
+  display: revert;
+}
+
+main article section {
+  font-family: IBM Plex Serif;
+  font-weight: var(--font-weight-text);
+}
+
+main article section img {
+  width: 100%;
+  display: block;
+}
+
+main article section h2 {
+  --vertical-margin: 1rem;
+  font-size: 1.75rem;
+  margin-block: var(--vertical-margin);
+}
+
+main article section p {
+  margin-block: var(--space-m);
+}
+
+main article section p.continue {
+  margin-top: var(--space-s);
+}
+
+main article section p:has(+ pre code, + img) {
+  margin-bottom: var(--space-s);
+}
+
+main article section code {
+  font-family: Ubuntu Mono;
+  font-weight: var(--font-weight-code);
+  background: #0d1117;
+  border-radius: 6px;
+  border: 0.3rem solid #0d1117;
+  white-space: pre;
+}
+
+main article section pre {
+  margin: 0;
+}
+
+main article section pre.continue code {
+  margin-bottom: var(--space-s);
+}
+
+main article section code.block {
+  display: block;
+  overflow: auto;
+  margin-top: var(--space-s);
+  margin-bottom: var(--space-m);
+}
+
+main article section code.block .comment {
+  color: #9399b2;
+}
+
+main:not(.posts) article a {
+  border-bottom: 1px solid var(--red);
+}
+
+main.posts article section ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
