@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>
+      Neovim as a Terminal Multiplexer and Neovide as a Terminal Emulator
+    </title>
+    <meta
+      name="description"
+      content="Neovim as a Terminal Multiplexer and Neovide as a Terminal Emulator"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <base href="https://loosh.ch" />
+
+    <meta
+      property="og:title"
+      content="Neovim as a Terminal Multiplexer and Neovide as a Terminal Emulator"
+    />
+    <meta
+      property="og:description"
+      content="Neovim as a Terminal Multiplexer and Neovide as a Terminal Emulator"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://loosh.ch/blog/neovidenal" />
+    <meta
+      property="og:image"
+      content="https://loosh.ch/assets/favicon-512x512.png"
+    />
+
+    <link rel="icon" sizes="any" href="assets/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="assets/lollipop.svg" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" href="../style.css" as="style" />
+    <link rel="preload" href="../blog.css" as="style" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/favicon-32x32.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/apple-touch-icon.png"
+    />
+
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../blog.css" />
+
+    <meta name="theme-color" content="#E23F3F" />
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">
+        <a href="https://loosh.ch">
+          <img
+            class="lollipop"
+            src="assets/lollipop.svg"
+            width="2.7rem"
+            height="2.7rem"
+            alt="a red-white 8-section lollipop, serving as a logo"
+            fetchpriority="high"
+          />
+        </a>
+      </div>
+    </header>
+
+    <nav>
+      <ul>
+        <li>
+          <a href="assets/george_looshch_cv.pdf">CV</a>
+        </li>
+
+        <li>
+          <a href="blog">Blog</a>
+        </li>
+      </ul>
+    </nav>
+
+    <main>
+      <article>
+        <header>
+          <h1>
+            Neovim as a Terminal Multiplexer and Neovide as a Terminal Emulator
+          </h1>
+
+          <time datetime="2025-09-06">September 6, 2025</time>
+        </header>
+
+        <section>
+          <h2>Motivation</h2>
+
+          <p>
+            I’m not the kind of person who wants everything to have Neovim key
+            bindings, but i definitely want my terminal to have them. And not
+            just key bindings—i want everything. I want plugins, mouse-free text
+            selection, text and file search, color scheme, jump list, virtual
+            editing. I want my terminal sessions to be buffers—well, tabs, to be
+            precise (i know, i know; but i have
+            <a
+              href="https://www.reddit.com/r/neovim/comments/1mmdsdx/comment/n8feciz/?context=3"
+              >reasons</a
+            >).
+          </p>
+        </section>
+
+        <section>
+          <h2>What Didn’t Work</h2>
+
+          <p>
+            Bash’s Vi mode is meh. The fact that it’s an emulation is already a
+            showstopper for me.
+          </p>
+
+          <p><code>:terminal</code> doesn’t handle nested Neovim instances.</p>
+
+          <p>
+            Anecdotally, when i set out to achieve my goal, two people posted on
+            <a href="https://www.reddit.com/r/neovim/">r/neovim</a> with a few
+            pieces of the puzzle i was yet to solve. The first
+            <a
+              href="https://www.reddit.com/r/neovim/comments/1mfu0ra/unnestnvim_no_more_worries_about_nested_neovim/"
+              >post</a
+            >
+            has introduced
+            <a href="https://github.com/brianhuster/unnest.nvim">unnest.nvim</a>
+            to me. Unfortunately, it doesn’t free the buffer from which you open
+            new Neovim instances. I want to open a new instance from a terminal
+            buffer and still keep that buffer usable. The project’s readme
+            mentions two other alternatives which didn’t allow my hope to die,
+            so i started exploring them.
+          </p>
+
+          <p>
+            <a href="https://github.com/samjwill/nvim-unception"
+              >nvim-unception</a
+            >
+            seems to work, but it lacked usage examples. I don’t recall the
+            exact issues i had with
+            <a href="https://github.com/willothy/flatten.nvim">flatten.nvim</a>,
+            but they were similar to the ones i had with nvim-unception.
+            Probably now that i achieved my goal, i could have looked into them
+            again, but i’ll leave it for another day.
+          </p>
+
+          <p>
+            From the second
+            <a
+              href="https://www.reddit.com/r/neovim/comments/1mlo0ai/neovim_is_a_multiplexer/"
+              >post</a
+            >
+            i discovered that, unsurprisingly, someone has already solved what i
+            was trying to tackle. The author uses
+            <a href="https://neovide.dev/">Neovide</a> as their terminal
+            emulator, something i would probably never consider myself. The post
+            doesn’t outline detailed instructions for doing this, though. I took
+            notes on Neovide and the
+            <a href="https://github.com/neovim/neovim/issues/30117">lack</a> of
+            soft wrapping in terminal buffers, and continued my research.
+          </p>
+        </section>
+
+        <section>
+          <h2>The Solution</h2>
+
+          <p>
+            I found a gem (not a Ruby one) called
+            <a href="https://github.com/mhinz/neovim-remote">neovim-remote</a>.
+            At first glance, the last commit being 3 years old made me question
+            whether it still works with the latest Neovim and whether it’s
+            polished enough. Turned out the answer to both is ‘yes’! It adds the
+            currently missing
+            <code>--remote-tab[-wait][-silent][+{cmd}]</code> command-line
+            arguments, which are yet to be backported from Vim.
+          </p>
+
+          <p>
+            I used Ghostty before, so first i’ll show how to integrate
+            neovim-remote with it, then how to add Neovide on top of it.
+          </p>
+
+          <p>
+            First, install neovim-remote. I’m on macOS, so i use Homebrew, but
+            you can install nvr with your package manager too
+            <code class="block">$ brew install neovim-remote</code>
+          </p>
+
+          <p>Then add the following supporting Bash to .zshrc/.bashrc</p>
+          <pre><code class="block">export MANPAGER="nvr --remote-tab +Man! -"
+<span class="comment"># EMPTY_FILE and NO_FILE are needed for Git integration.</span>
+export EMPTY_FILE="$(mktemp -t empty)"
+export NO_FILE="/dev/null"
+
+<span class="comment"># Wraps nvr and handles cases when no arguments have been passed.</span>
+v() {
+	if (( $# == 0 )); then nvr --remote-tab "${PWD}"
+	else nvr --remote-tab "$@"; fi
+}
+
+<span class="comment"># Changes tab-local cwd on each cd call.</span>
+chpwd() {
+	nvr --remote-expr "execute('tcd ' . \
+		fnameescape('$(pwd)'))" > /dev/null &!
+}</code></pre>
+
+          <p>Next, integrate nvr into your Git config</p>
+          <pre><code class="block">[core]
+	editor = nvr --remote-tab-wait
+[diff]
+	tool = nvr
+[difftool "nvr"]
+        <span class="comment">; EMPTY_FILE and NO_FILE replicate nvimdiff’s behavior for</span>
+        <span class="comment">; added and deleted files.</span>
+	cmd = nvr -d "${REMOTE/"${NO_FILE}"/"${EMPTY_FILE}"}" \
+		"${LOCAL/"${NO_FILE}"/"${EMPTY_FILE}"}"
+[merge]
+	tool = nvr
+[mergetool "nvr"]
+	cmd = nvr -d "${REMOTE}" "${BASE}" "${LOCAL}" "${MERGED}" \
+		-c 'wincmd J | wincmd ='
+[mergetool]
+	keepBackup = false</code></pre>
+
+          <p>Now add the following to your Neovim config</p>
+          <pre><code class="block">vim.api.nvim_create_autocmd('FileType', {
+	<span class="comment">-- Git waits for all the buffers it has created to be closed.</span>
+	pattern = {'git*'},
+	callback = function() vim.bo.bufhidden = 'delete' end,
+})
+
+<span class="comment">-- Exit Terminal mode.</span>
+vim.keymap.set('t', 'jk', '&lt;c-\\&gt;&lt;c-n&gt;')
+<span class="comment">-- Map &lt;c-n&gt; to down arrow.</span>
+vim.keymap.set('t', '&lt;c-n&gt;', '&lt;down&gt;')
+<span class="comment">-- Map &lt;c-p&gt; to up arrow.</span>
+vim.keymap.set('t', '&lt;c-p&gt;', '&lt;up&gt;')
+
+<span class="comment">-- The mapping to open a terminal tab.</span>
+vim.keymap.set('n', '&lt;leader&gt;t', function()
+	vim.cmd 'tab terminal'
+	vim.cmd.startinsert()
+end)
+
+<span class="comment">-- The mapping to close a tab based on context.</span>
+vim.keymap.set('n', '&lt;leader&gt;c', function()
+	if vim.wo.diff then vim.rpcnotify(0, 'Exit', 0) end
+	if vim.bo.buftype == 'terminal' then vim.cmd 'bdelete!'
+	else vim.cmd.tabclose() end
+end)</code></pre>
+
+          <p>
+            Finally, configure your terminal emulator to start with this command
+            (or a slightly different one in case you use something else rather
+            than Zsh)
+          </p>
+          <pre
+            class="continue"
+          ><code class="block">/bin/zsh -ic 'nvr -s +terminal +startinsert'</code></pre>
+
+          <p class="continue">For Ghostty, use</p>
+          <pre
+            class="continue"
+          ><code class="block">initial-command = /bin/zsh -ic 'nvr -s +terminal +startinsert'</code></pre>
+
+          <p class="continue">
+            Look up how to set the initial command for your emulator. If it’s
+            not supported, try an emulator where it is.
+          </p>
+
+          <p>
+            And that’s it! Restart your terminal and you should be greated by
+            Neovim.
+          </p>
+
+          <p>
+            <a href="https://github.com/looshch/configs/tree/neonal">Here</a>’s
+            a complete config (with some unrelated bits).
+          </p>
+        </section>
+
+        <section>
+          <h2>Going Beyond</h2>
+
+          <p>
+            The above lets you use Neovide as a terminal emulator. It offers
+            niceties like cursor and UI animations, which are handy when you’re
+            screen sharing.
+          </p>
+
+          <p>
+            Add this to your Neovide
+            <a href="https://neovide.dev/config-file.html#location"
+              >configuration</a
+            >
+          </p>
+          <pre><code class="block">neovim-bin = "source ~/.zshrc && nvim +terminal +startinsert"</code></pre>
+
+          <p>Then update your Neovim configuration with the following</p>
+          <pre><code class="block">local font_size_factor = 1.1
+local change_font_size = function(factor)
+	vim.g.neovide_scale_factor = vim.g.neovide_scale_factor
+		* factor
+end
+
+<span class="comment">-- These are optional, <a href="https://neovide.dev/configuration.html">here</a>’s the full reference.</span>
+vim.g.neovide_scroll_animation_length = 0.1
+vim.g.neovide_hide_mouse_when_typing = true
+<span class="comment">-- macOS-specific, see if you like it compared to neovide_fullscreen.</span>
+vim.g.neovide_macos_simple_fullscreen = true
+
+<span class="comment">-- Replace it with any font you like. `h12` is the font size.</span>
+vim.o.guifont = 'UbuntuMono Nerd Font:h12'
+
+vim.keymap.set('n', '&lt;d-=&gt;', function()
+	change_font_size(font_size_factor)
+end)
+vim.keymap.set('n', '&lt;d--&gt;', function()
+	change_font_size(1/font_size_factor)
+end)
+
+<span class="comment">-- Enable copying and pasting in Neovide. These are macOS-specific.</span>
+<span class="comment">-- You may want to replace ‘d’ which stands for the Command key (⌘)</span>
+<span class="comment">-- with ‘c’ which stands for the Control key. Neovide allows using</span>
+<span class="comment">-- the Command key in mappings so you may want to also update your</span>
+<span class="comment">-- existing plugins</span>
+vim.keymap.set('v', '&lt;d-c&gt;', '"+y')
+vim.keymap.set({'', 'i', 'c', 't'}, '&lt;d-v&gt;', function()
+	vim.api.nvim_paste(vim.fn.getreg '+', true, -1)
+end)</code></pre>
+
+          <p>
+            Again,
+            <a href="https://github.com/looshch/configs/tree/neovidenal">here</a
+            >’s a complete final config (with some unrelated parts).
+          </p>
+
+          <p>
+            Feel free to <a href="mailto:looshch@loosh.ch">drop</a> me a line if
+            you have any questions.
+          </p>
+
+          <p>Have a nice one!</p>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
