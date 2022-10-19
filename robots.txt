@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /.git/
+Disallow: /assets/
+Disallow: /.gitignore
+Disallow: /404.html
+Disallow: /cv.*
+Disallow: /george_looshch_cv_reduced_photo_size.pdf

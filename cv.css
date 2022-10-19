@@ -1,0 +1,109 @@
+@font-face {
+	font-family: Montserrat;
+	font-style: normal;
+	font-weight: 300;
+	src: url(https://fonts.gstatic.com/s/montserrat/v24/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2) format(woff2);
+	font-display: swap;
+}
+
+@font-face {
+	font-family: Montserrat;
+	font-style: normal;
+	font-weight: 400;
+	src: url(https://fonts.gstatic.com/s/montserrat/v24/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2) format(woff2);
+	font-display: swap;
+}
+
+@font-face {
+	font-family: Montserrat;
+	font-style: normal;
+	font-weight: 500;
+	src: url(https://fonts.gstatic.com/s/montserrat/v24/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2) format(woff2);
+	font-display: swap;
+}
+
+h1,
+h2,
+h3,
+h4,
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+ul ul { margin-left: .7rem }
+
+a,
+a * {
+	text-decoration: none;
+	text-wrap: nowrap;
+	line-height: .9;
+	color: #1358DB;
+}
+
+h1,
+h2,
+h3,
+h4,
+.contacts .name,
+.positions .position header time,
+.positions .position header address { font-weight: 400 }
+
+a,
+a *,
+.contacts address ul li,
+.positions .position header time,
+.positions .position header address { display: inline-block }
+
+.contacts address,
+.contacts address ul li.tel,
+.skills,
+.positions { margin-top: .5rem }
+
+.underline { border-bottom: 1px solid #1358DB }
+
+.nowrap { text-wrap: nowrap }
+
+body {
+	font-family: Montserrat, sans-serif;
+	color: #292929;
+	position: relative;
+	font-weight: 300;
+	font-size: .75rem;
+}
+
+main {
+	margin: 1rem .5rem 0;
+	display: flex;
+	justify-content: center;
+}
+
+article {
+	width: 48rem;
+	display: flex;
+}
+
+.contacts img {
+	width: 7rem;
+	margin-top: .2rem;
+}
+
+.contacts .name {
+	margin-top: .3rem;
+	font-size: 1.5rem;
+	line-height: 1.5rem;
+}
+
+.contacts address { font-style: normal }
+
+.contacts address ul li,
+.contacts address ul li a { width: fit-content }
+
+.contacts address ul li.email { margin-bottom: .5rem }
+
+.positions .position { margin-bottom: .7rem }
+
+.positions .position header h4 { font-weight: 500 }
+
+.positions .position header time,
+.positions .position header address { font-style: normal }
